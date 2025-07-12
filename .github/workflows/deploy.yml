@@ -41,7 +41,11 @@ jobs:
       id: ecr
       run: |
         cd terraform
-        echo "ECR_REPO_URL=$(terraform output -raw ecr_repo_url)" >> $GITHUB_ENV
+        echo ECR_REPO_URL=$(terraform output -raw ecr_repo_url) >> $GITHUB_ENV
+    
+    - name: Debug ECR output
+      run: |
+       echo "Resolved ECR URL:$ECR_REPO_URL"
 
     - name: 🔐 Log in to Amazon ECR
       run: |
