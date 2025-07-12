@@ -1,14 +1,17 @@
-name: Destroy AWS Resources (Terraform)
+name: Destroy AWS Resources
 
 on:
-  workflow_dispatch:  # Manual trigger from GitHub UI
+  workflow_dispatch:  # Manual trigger from GitHub Actions UI
 
 jobs:
   destroy:
     runs-on: ubuntu-latest
 
+    env:
+      AWS_REGION: ap-south-1
+
     steps:
-    - name: 📥 Checkout repository
+    - name: 📥 Checkout Code
       uses: actions/checkout@v3
 
     - name: 🔐 Configure AWS Credentials
@@ -16,14 +19,10 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        region: ap-south-1
-
-    - name: ⚙️ Terraform Init
-      run: |
-        cd terraform
-        terraform init
+        aws-region: ${{ env.AWS_REGION }}
 
     - name: 💣 Terraform Destroy
       run: |
         cd terraform
-        terraform destroy -auto-approve
+        terraform init
+        terraform destroy -auto-approve -input=false

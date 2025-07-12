@@ -4,4 +4,5 @@ output "cluster_name" {
 
 output "ecr_repo_url" {
     value = aws_ecr_repository.medusa.repository_url
+    description = "The full ECR URL"
 }
