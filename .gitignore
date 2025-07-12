@@ -1,0 +1,36 @@
+# Terraform state files and directories
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Crash logs
+crash.log
+terraform.tfvars
+terraform.tfvars.json
+
+# IDE/editor configs
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Linux swap files or temp files
+*~
+*.swp
+*.swo
+
+# GitHub Actions workflow logs (optional)
+.github/workflows/*.log
+
+# Secrets or environment files
+.env
+.env.*
+*.pem
+*.key
+*.crt
+secrets.yml
